@@ -51,7 +51,7 @@ from PySide6.QtWidgets import (
 # Optional: path to a cookies.txt file for YouTube
 # If set, yt-dlp will always use these cookies.
 # Leave as None if you don't want to use cookies.
-COOKIES_FILE = r"Z:\New folder\Coding\Clone Hero Video Downloader\YoutubeCookies\youtube.com_cookies.txt"  # e.g. r"c:\%USERPROFILE%\Downloads\youtube_cookies.txt"
+COOKIES_FILE = None  # e.g. r"c:\%USERPROFILE%\Downloads\youtube_cookies.txt"
 
 # =========================
 #  LOW-LEVEL HELPERS
@@ -843,4 +843,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
