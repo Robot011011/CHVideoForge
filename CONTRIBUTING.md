@@ -42,7 +42,7 @@ Before submitting:
 ### Clone the repo:
 ```
 git clone https://github.com/Robot011011/CHVideoForge.git
-cd your-repo
+cd CHVideoForge
 ```
 
 ### Create & activate a virtual environment:
