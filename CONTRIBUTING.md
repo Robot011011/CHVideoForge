@@ -41,7 +41,7 @@ Before submitting:
 
 ### Clone the repo:
 ```
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/Robot011011/CHVideoForge.git
 cd your-repo
 ```
 
