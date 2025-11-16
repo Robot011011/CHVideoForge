@@ -25,7 +25,6 @@ If you are using an older version, please upgrade before submitting reports.
 If you believe you’ve discovered a security vulnerability, please email:
 
 **📬 imnotarobot0110@gmail.com**  
-*(or replace with GitHub’s private issue/DM method if you prefer)*
 
 Please include:
 
