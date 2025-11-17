@@ -1,164 +1,198 @@
 # Clone Hero Video Forge
 
-[![Latest Release](https://img.shields.io/github/v/release/Robot011011/CHVideoForge?label=latest%20release)](https://github.com/Robot011011/CHVideoForge/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/Robot011011/CHVideoForge/total)](https://github.com/Robot011011/CHVideoForge/releases)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![Built with Python](https://img.shields.io/badge/built%20with-Python%203.x-blue)
+**Clone Hero Video Forge** is a GUI tool that makes it stupid-easy to prepare background videos for **Clone Hero songs**.
+
+It can:
+
+- Download YouTube videos at up to **1080p**
+- Output **WebM (VP8)** or **MP4 (H.264/AAC)** depending on your choice
+- Embed audio into WebM if desired
+- Trim or pad videos (and audio) for chart syncing
+- Adjust any existing WebM without redownloading
+- Show realtime progress for yt-dlp and ffmpeg
+- Display a live-updating debug console
+- Package into a standalone Windows EXE (no Python required)
+
+This project is fully open source under the MIT License.
 
 ---
 
-Clone Hero Video Forge is a lightweight desktop tool for creating, adjusting, and syncing **background videos for Clone Hero**.  
-It downloads videos from YouTube, converts them to Clone-Hero-friendly VP8 WebM, optionally embeds audio, and provides simple trim/pad tools for perfect timing.
+## ✨ Features
 
-This project is completely open-source and community-driven.
+### ✅ Download From YouTube
 
----
+- Download in **WebM (VP8)** or **MP4 (H.264)**
+- Optional **embedded audio** (Vorbis for WebM)
+- Automatic format selection
+- Trim or pad the video during download
 
-# 🎸 Features
+### ✅ Adjust Existing WebM
 
-### 🎥 **YouTube → VP8 WebM Conversion**
-- High-quality WebM output (up to 1080p)
-- Optional audio embedding (single file)
-- Full control over filename and destination folder
+- Trim the start
+- Add silence/black padding
+- Keep or remove audio
+- Overwrite in place or save as a new file
 
-### ✂️ **Trim & Pad Controls**
-- Trim video/audio from the start  
-- Add black frames + silence for precise timing  
-- Audio and video remain perfectly in sync
+### ✅ Quality of Life
 
-### 🔧 **Adjust Existing WebM**
-- Load an existing `.webm` and re-trim/re-pad it  
-- Optional overwrite or new output name  
-- Works with audio or silent videos
-
-### 📡 **Smart UI & Feedback**
-- Progress bar for download & encoding  
-- Open-Folder button after completion  
-- Live-updating Debug Log  
-- Filename conflict detection  
-- Auto-cleanup of temp files  
-- Auto-append `.webm` when missing
-
-### ⚙️ **Preset Button**
-- "Preset: Clone Hero BG" instantly configures typical CH video settings
+- **Preset: Clone Hero BG** button
+- Live debug log window
+- Progress bars for both downloading & encoding
+- Open output folder when done
 
 ---
 
-# 📦 Download
+## 📦 Installation (End-Users)
 
-Grab the latest Windows release here:
+Download the latest release EXE from:
 
-👉 **https://github.com/Robot011011/CHVideoForge/releases/latest**
+> https://github.com/Robot011011/CHVideoForge/releases
 
-> Does **not** require Python.  
-> Just run the executable.
-
----
-
-# 📘 Quick Usage Guide
-
-### 1. **Downloading a Video**
-1. Paste a YouTube URL  
-2. Select your Clone Hero song folder  
-3. Choose an output name (Ex: `video.webm`)  
-4. Optional:  
-   - Trim start  
-   - Pad start  
-   - Embed audio  
-5. Press **Download**  
-6. Click **Open Folder** when done
-
-### 2. **Adjusting an Existing `.webm`**
-1. Choose a `.webm` file  
-2. Choose output name (or leave blank to overwrite)  
-3. Choose trim/pad values  
-4. (Optional) Keep embedded audio  
-5. Press **Adjust**  
-
-### 3. **Using the Video in Clone Hero**
-Place your final file inside the song folder:
-
-```
-song.ini
-song.ogg
-*.chart or *.mid
-video.webm
-```
+Run the EXE — no Python, no setup, no dependencies needed.
 
 ---
 
-# 🧩 Requirements (Source Version)
+## 🧑‍💻 Installation (Developers)
 
-```
-Python 3.10+
-ffmpeg in PATH
-yt-dlp in PATH
+### 1. Clone the repo
+
+```sh
+git clone https://github.com/Robot011011/CHVideoForge.git
+cd CHVideoForge
 ```
 
-Install dependencies:
+### 2. Create a virtual environment
 
+```sh
+python -m venv .venv
+.\.venv\Scripts ctivate
 ```
+
+### 3. Install dependencies
+
+```sh
 pip install -r requirements.txt
 ```
 
-Run:
+### 4. Run the GUI
 
-```
+```sh
 python ch_video_gui.py
 ```
 
 ---
 
-# 🛠 Building the EXE
+## 🏗 Building the EXE (Windows)
 
+Requires:
+
+- Python 3.10–3.12
+- PyInstaller (`pip install pyinstaller`)
+
+Build with:
+
+```sh
+pyinstaller --onefile --noconsole --name CHVideoForge ch_video_gui.py
 ```
-pyinstaller ^
-  --noconsole ^
-  --onefile ^
-  --name "Clone Hero Video Forge" ^
-  ch_video_gui.py
+
+Your EXE will appear in:
+
+```text
+dist/CHVideoForge.exe
 ```
 
 ---
 
-# ⚖️ License
+## 🎮 Using Clone Hero Video Forge
 
-MIT License – see LICENSE file.
+### 1. Downloading a YouTube Video
+
+1. Paste a YouTube link.
+2. Choose your **song folder**.
+3. Set the **output name** (without extension, e.g. `video` or `gurenge_bg`).
+4. Choose format:
+   - WebM mode (default) — optionally embed audio.
+   - MP4 mode — video+audio combined.
+5. Set **Trim start** and/or **Pad start** (in seconds), if needed.
+6. Click **Download**.
+
+A ready-to-use `video.webm` or `video.mp4` will appear in your song folder.
+
+> 🔎 Tip: The “Preset: Clone Hero BG” button will:
+> - Turn off audio embedding
+> - Reset trim/pad to `0.0`
+> - Set the output name to `video.webm`
+
+### 2. Adjusting an Existing WebM
+
+1. In **Adjust Existing WebM**, pick an input `.webm` file.
+2. Leave **Output WebM** blank to overwrite, or enter a new name.
+3. Set **Trim start** and/or **Pad start**.
+4. Check **Keep audio in output** if you want to keep audio.
+5. Click **Adjust**.
+
+The tool will re-encode to a Clone Hero–friendly VP8 WebM, trimming and/or padding both video and audio where appropriate.
+
+### 3. Using Videos in Clone Hero
+
+In your song’s folder, you typically have:
+
+```text
+song.ini
+song.ogg
+notes.mid  (or notes.chart)
+video.webm  (or video.mp4)
+```
+
+In Clone Hero:
+
+1. Enable **Song Videos** in the game settings.
+2. Make sure the video file is in the same folder as `song.ini`.
+
+Clone Hero will detect and use the video automatically.
 
 ---
 
-# Legal Notes
-You agree to:
-- Follow YouTube’s Terms of Service  
-- Only download content you are legally allowed to  
-- Accept full responsibility for use of the tool  
+## ⚠️ Disclaimer
 
-This tool is **not affiliated** with Clone Hero or YouTube.
+This tool:
 
----
+- Does **not** encourage copyright infringement.
+- Does **not** bypass YouTube restrictions.
+- Requires users to **respect copyright law**.
+- Is meant only for use with videos you have the rights to download.
 
-# 🤝 Contributing
-
-See **CONTRIBUTING.md**.
+By using this project, you agree to be responsible for how you download and use content.
 
 ---
 
-# 🔐 Security
+## 🙌 Contributing
 
-See **SECURITY.md**.
+Contributions are welcome!
+
+- Open issues for bugs, feature requests, and ideas.
+- Fork the repo, make a feature branch, and submit a pull request.
+
+See **CONTRIBUTING.md** for details on coding style, branching, and PR guidelines.
 
 ---
 
-# 📚 Full User Manual
+## 🔒 Security
 
-See **USING_CLONE_HERO_VIDEO_FORGE.md**.
+If you discover a security issue:
+
+1. Please **do not** open a public GitHub issue first.
+2. Email the repository owner or open a private security advisory on GitHub.
+3. Allow a reasonable amount of time for investigation and a fix.
+
+See **SECURITY.md** for more details.
 
 ---
 
-# 🚀 Enjoy the Forge!
+## 📜 License
 
-If this tool helped you, star ⭐ the repo!
+This project is licensed under the **MIT License**.
 
+You are free to use, modify, and redistribute this project, provided you keep the copyright and license notice in derivative works.
 
-
-
+See `LICENSE` for the full text.
